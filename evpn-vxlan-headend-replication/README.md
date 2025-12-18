@@ -9,11 +9,11 @@ https://github.com/aiazza/Containerlab_labs/tree/main/evpn-vxlan-headend-replica
 
 ## Underlay architecture (BGP in the Datacenter)
 
-This lab follows the **BGP-in-the-datacenter architecture** described in **RFC 7938**. The fabric is built using a classic **leaf–spine topology** with **eBGP** as the sole underlay routing protocol.
+This lab follows the BGP-in-the-datacenter architecture described in RFC 7938. The fabric is built using a classic leaf–spine topology with eBGP as the sole underlay routing protocol.
 
-The underlay is an **IPv6-only fabric** using **unnumbered links**, where BGP sessions are formed directly on interfaces using **IPv6 link-local addresses**. This design removes the need for an IGP and avoids assigning numbered point-to-point addresses, which aligns with common large-scale datacenter practices.
+The underlay is an IPv6-only fabric using unnumbered links, where BGP sessions are formed directly on interfaces using IPv6 link-local addresses. This design removes the need for an IGP and avoids assigning numbered point-to-point addresses, which aligns with common large-scale datacenter practices.
 
-While RFC 7938 defines the overall architecture, the ability to transport IPv4 reachability across an IPv6-only underlay relies on the IPv4-over-IPv6 next-hop mechanisms defined in **RFC 8950**.
+While RFC 7938 defines the overall architecture, the ability to transport IPv4 reachability across an IPv6-only underlay relies on the IPv4-over-IPv6 next-hop mechanisms defined in RFC 8950.
 
 ---
 
