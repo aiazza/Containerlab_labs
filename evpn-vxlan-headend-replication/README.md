@@ -70,7 +70,8 @@ router bgp 65000
       neighbor ebgp next-hop address-family ipv6 originate
 ```
 
-So what I am doing here is creating a peer group called ‘ebgp’ and activating BGP on the interfaces we configured with IPv6 earlier, by activating this BGP will form a session over Eth1 and Eth2 without needing an IP address, it will use the pre-configured ipv6 LLA. After that in the ipv4 address family we activate the peer group that allows for route exchange and also tell EOS to originate the IPv4 prefixes from the IPv6 next hop. Without this, the IPv4 routes would look for an IPv4 next hop and not find it which would prevent the route from being advertised.
+So what I am doing here is creating a peer group called ‘ebgp’ and activating BGP on the interfaces we configured with IPv6 earlier, by activating this BGP will form a session over Eth1 and Eth2 without needing an IP address, it will use the pre-configured ipv6 LLA. 
+After that in the ipv4 address family we activate the peer group that allows for route exchange and also tell EOS to allow IPv4 prefixes to be originated with an IPv6 next hop. Without this, the IPv4 routes would expect to be able to resolve an IPv4 next hop and not find it which would prevent the route from being advertised.
 
 Also one thing thats important is that because i am using a unique ASN for the leafs, I am setting enabling `neighbor ebgp allowas-in 3`, if we don’t then any traffic going from leaf to leaf will be blocked due to eBGP loop prevention mechanism where if it see’s its own ASN in the AS Path it will drop the route. 
 
