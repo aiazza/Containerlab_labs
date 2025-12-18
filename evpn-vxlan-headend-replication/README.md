@@ -52,7 +52,7 @@ ipv6 unicast-routing
 
 ```
 
-This enables IPv6 on leaf uplinks and spine downlinks and enables ip routing, I had an issue during the lab where i couldn’t ping p2p interfaces even though everything was setup correctly, I later found that enabling `ip routing ipv6 interfaces` made everything work so don’t forget that. Now for the BGP configuration 
+This enables IPv6 on leaf uplinks and spine downlinks and enables ip routing, I had an issue during the lab where i couldn’t ping ipv6 lla p2p interfaces even though everything was setup correctly, I later found that enabling `ip routing ipv6 interfaces` made everything work so don’t forget that. Now for the BGP configuration 
 
 **Leaf 1 - 4** 
 
@@ -70,8 +70,8 @@ router bgp 65000
       neighbor ebgp next-hop address-family ipv6 originate
 ```
 
-So what I am doing here is creating a peer group called ‘ebgp’ and activating BGP on the interfaces we configured with IPv6 earlier, by activating this BGP will form a session over Eth1 and Eth2 without needing an IP address, it will use the pre-configured ipv6 LLA. 
-After that in the ipv4 address family we activate the peer group that allows for route exchange and also tell EOS to allow IPv4 prefixes to be originated with an IPv6 next hop. Without this, the IPv4 routes would expect to be able to resolve an IPv4 next hop and not find it which would prevent the route from being advertised.
+So what I am doing here is creating a peer group called ‘ebgp’ and defining neighbors on the interfaces we configured with IPv6 earlier, by activating this BGP will form a session over Eth1 and Eth2 without needing an IP address, it will use the pre-configured ipv6 LLA. 
+After that in the ipv4 address family we activate the peer group that allows for route exchange and also tell EOS to allow IPv4 prefixes to be advertised with an IPv6 next hop. Without this, the IPv4 routes would expect to be able to resolve an IPv4 next hop and not find it which would prevent the route from being advertised.
 
 Also one thing thats important is that because i am using a unique ASN for the leafs, I am setting enabling `neighbor ebgp allowas-in 3`, if we don’t then any traffic going from leaf to leaf will be blocked due to eBGP loop prevention mechanism where if it see’s its own ASN in the AS Path it will drop the route. 
 
