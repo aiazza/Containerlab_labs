@@ -1,0 +1,49 @@
+# topology documentation: http://containerlab.dev/lab-examples/srl-ceos/
+name: evpn-vxlan
+
+topology:
+  nodes:
+    leaf1:
+      kind: arista_ceos
+      image: ceos:4.34.2.1F_ARM
+    leaf2:
+      kind: arista_ceos
+      image: ceos:4.34.2.1F_ARM
+      exec:
+        - interface Ethernet1
+        - ipv6 enable
+        - interface Ethernet2
+        - ipv6 enable
+    leaf3:
+      kind: arista_ceos
+      image: ceos:4.34.2.1F_ARM
+    leaf4:
+      kind: arista_ceos
+      image: ceos:4.34.2.1F_ARM
+    spine1:
+      kind: arista_ceos
+      image: ceos:4.34.2.1F_ARM
+    spine2:
+      kind: arista_ceos
+      image: ceos:4.34.2.1F_ARM
+    host1:
+      kind: linux
+      image : alpine:latest
+    host2:
+      kind: linux
+      image: alpine:latest
+
+  links:
+    - endpoints: [ "leaf1:eth1", "spine1:eth1" ]
+    - endpoints: [ "leaf2:eth1", "spine1:eth2" ]
+    - endpoints: [ "leaf3:eth1", "spine1:eth3" ]
+    - endpoints: [ "leaf4:eth1", "spine1:eth4" ]
+    - endpoints: [ "leaf1:eth2", "spine2:eth1" ]
+    - endpoints: [ "leaf2:eth2", "spine2:eth2" ]
+    - endpoints: [ "leaf3:eth2", "spine2:eth3" ]
+    - endpoints: [ "leaf4:eth2", "spine2:eth4" ]
+    - endpoints: [ "host1:eth1", "leaf1:eth3" ]
+    - endpoints: [ "host2:eth1", "leaf4:eth3" ]
+
+
+
