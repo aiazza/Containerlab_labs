@@ -7,7 +7,7 @@
 
 ## Underlay configuration
 
-First of all we need to configure our underlay, to do that we need to configure point-to-point IP addresses and then configure an underlay routing protocol, to mimic what I have usually seen in large scale Datacenters I am using EBGP as the underlay following the same concepts (not exactly same ASN addressing) as in [RFC7938](https://datatracker.ietf.org/doc/html/rfc7938) . To make it easy I will setup what we call BGP unnumbered following [RFC8950](https://www.rfc-editor.org/rfc/rfc8950) which allows us to form BGP neighborships on top of IPv6 link-local addresses so that saves me the hassle of creating p2p interface addresses. 
+First of all we need to configure our underlay, to do that we need to configure point-to-point IP addresses and then configure an underlay routing protocol, to mimic what I have usually seen in large scale Datacenters I am using EBGP as the underlay following the same concepts (not exactly same ASN addressing) as in [RFC7938](https://datatracker.ietf.org/doc/html/rfc7938) . To avoid configuring the p2p addresses I will setup what we call BGP unnumbered following [RFC8950](https://www.rfc-editor.org/rfc/rfc8950) which allows us to form BGP neighborships on top of IPv6 link-local addresses. 
 
 ### BGP unnumbered setup
 
