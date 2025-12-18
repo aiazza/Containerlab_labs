@@ -1,6 +1,7 @@
 ### **Topology**
 
-![Screenshot 2025-12-18 at 8.22.33 AM.png](attachment:4b62ef1f-c06e-4146-9b1e-7aa841898cda:Screenshot_2025-12-18_at_8.22.33_AM.png)
+<img width="538" height="559" alt="image" src="https://github.com/user-attachments/assets/5ca408cb-77f0-4621-83c0-3a392a59a8d0" />
+
 
 [Configs](https://github.com/aiazza/Containerlab_labs/tree/main/evpn-vxlan-headend-replication/configs) 
 
@@ -221,6 +222,6 @@ PING 192.168.10.12 (192.168.10.12): 56 data bytes
 
 let’s check this with a packet capture on leaf1’s uplink 
 
-![Screenshot 2025-12-18 at 11.07.40 AM.png](attachment:5549693d-52cf-43de-ba8e-840dd41b454a:Screenshot_2025-12-18_at_11.07.40_AM.png)
+<img width="1510" height="1656" alt="image" src="https://github.com/user-attachments/assets/c448561a-92a0-4114-85f4-1c364fc8e7a7" />
 
 you can see that the packet is being encapsulated in VNI 100 , you can also see the ARP request from host1 to host2 a little lower.
