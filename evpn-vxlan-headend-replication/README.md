@@ -226,3 +226,25 @@ let’s check this with a packet capture on leaf1’s uplink
 <img width="1510" height="1656" alt="image" src="https://github.com/user-attachments/assets/c448561a-92a0-4114-85f4-1c364fc8e7a7" />
 
 you can see that the packet is being encapsulated in VNI 100 , you can also see the ARP request from host1 to host2 a little lower.
+
+You can also look at the default and the vxlan mac-address table to see the Vxlan to VTEP mapping :
+
+```
+leaf1#show vxlan address-table
+          Vxlan Mac Address Table
+----------------------------------------------------------------------
+
+VLAN  Mac Address     Type      Prt  VTEP             Moves   Last Move
+----  -----------     ----      ---  ----             -----   ---------
+ 100  aac1.abf8.4c96  DYNAMIC   Vx1  10.1.1.4         1       0:00:46 ago
+Total Remote Mac Addresses for this criterion: 1
+leaf1#sh mac address-table
+          Mac Address Table
+------------------------------------------------------------------
+
+Vlan    Mac Address       Type        Ports      Moves   Last Move
+----    -----------       ----        -----      -----   ---------
+ 100    aac1.aba3.ca50    DYNAMIC     Et3        1       0:09:49 ago
+ 100    aac1.abf8.4c96    DYNAMIC     Vx1        1       0:02:12 ago
+Total Mac Addresses for this criterion: 2
+```
